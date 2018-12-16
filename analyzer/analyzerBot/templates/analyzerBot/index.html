@@ -1,0 +1,104 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <style>
+        .navbar-brand
+        {
+            color:black;
+            letter-spacing:10px ;
+        }
+        
+        body,html{
+        height: 100%;
+        width: 100%;
+        margin: 0;
+        padding: 0;
+        
+        }
+
+        .searchbar{
+        margin-bottom: auto;
+        margin-top: auto;
+        height: 60px;
+        background-color: #353b48;
+        border-radius: 30px;
+        padding: 10px;
+        }
+
+        .search_input{
+        color: white;
+        border: 0;
+        outline: 0;
+        background: none;
+        width: 0;
+        caret-color:transparent;
+        line-height: 40px;
+        transition: width 0.4s linear;
+        }
+
+        .searchbar:hover > .search_input{
+        padding: 0 10px;
+        width: 450px;
+        caret-color:black;
+        transition: width 0.4s linear;
+        }
+
+        .searchbar:hover > .search_icon{
+        background: white;
+        color: black;
+        }
+
+        .search_icon{
+        height: 40px;
+        width: 40px;
+        float: right;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 50%;
+        color:white;
+        }
+
+    </style>
+    </head>
+    <body>
+    <nav class="navbar navbar-default navbar-fixed-top navbar-custom">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="#" id="navbarBrand">REVIEW ANALYSIS</a>
+                </div>
+                <div class="btn-default" role="group" aria-label="...">
+                        <button type="button" class="btn btn-outline-dark"> ABOUT</button>
+                </div>
+            </div>
+            </div>
+        </nav>
+        <div class="container h-100">
+                <div class="d-flex justify-content-center h-100">
+                <div class="searchbar">
+                    <input class="search_input" type="text" name="url" id="link" placeholder="Enter Amazon product URL...">
+                    <a href="#" class="search_icon" id="submit"><i class="fas fa-search"></i></a>
+                </div>
+                </div>
+            </div>
+    </body>
+
+    <script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
+    <script>
+        $("#submit").click(function(){
+            var url_to_send = $("#link").val();
+
+            $.ajax({
+                url: {% url "report"%},
+                data: {
+                    'url': url_to_send
+                },
+                dataType: 'json',
+                success: function(data){
+                    alert(data.val);
+                }
+            });
+
+        });
+    </script>
+</html>
