@@ -3,15 +3,11 @@ from django.shortcuts import render
 from django.http import HttpResponse, JsonResponse
 
 def index(request):
-    """
-        The base view that accepts URLs to Amazon products.
-    """
+
     return render(request, 'analyzerBot/index.html')
 
-def generate_report(request):
-    """
-        Using this for generating a report.
-    """
+def report(request):
+
     url = request.GET['url']
 
     ##Use the url obtained for performing scrapping and sentiment analysis

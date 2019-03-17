@@ -1,6 +1,7 @@
 import scrapy
 import re
 
+
 # Identified noise:
 #   1.Emojis - replaced with ""
 #   2.Line breaks <br> - replaced with " "
@@ -15,8 +16,9 @@ class reviewSpider(scrapy.Spider):
         self.reviews = []
 
     start_urls = [
-        'https://www.amazon.in/Nikon-D750-Digital-Lowepro-Hatchback/product-reviews/B01M062SQW/ref=dpx_acr_txt?showViewpoints=1'
+        'https://www.amazon.in/Nikon-D750-Digital-Lowepro-Hatchback/product-reviews/B01M062SQW/ref=cm_cr_arp_d_viewpnt_lft?showViewpoints=1&filterByStar=positive&pageNumber=1'
     ]
+
 
     def remove_emoji_and_br(self, review):
         rev = review.replace("<br>", " ")
@@ -26,9 +28,10 @@ class reviewSpider(scrapy.Spider):
         return rev
 
     def parse(self, response):
-        self.reviews.extend(response.xpath(
-            "//span[@data-hook='review-body']").re(r'text">(.+)</span>'))
+
+        self.reviews.extend(response.xpath("//span[@data-hook='review-body']").re(r'text">(.+)</span>'))
         print(len(self.reviews))
+
         next_page_url = response.css("li.a-last a::attr(href)").get()
         if next_page_url is not None:
             yield scrapy.Request(response.urljoin(next_page_url), callback=self.parse)

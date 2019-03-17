@@ -1,0 +1,33 @@
+# PyCharm Files
+.idea/
+
+
+
+
+# Clutter
+db.sqlite3
+*.pyc
+
+#
+
+
+ Wellspring Folder
+s
+wellspring/*/
+test-wellspring/
+
+apps/*/migrations/
+
+
+media/*
+Analytics/*
+
+
+# Elastic Beanstalk 
+Files
+.elasticbeanstalk/*
+!.elasticbeanstalk/*.cfg.yml
+!.elasticbeanstalk/*.global.yml
+
+#env files
+*.env

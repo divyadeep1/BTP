@@ -24,7 +24,7 @@ SECRET_KEY = 'zq(47_*zyetpm^qmw*v2&h^xkzb@a_ny_^f+3o-hfu^e%pmj)u'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
-
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 ALLOWED_HOSTS = []
 
 
@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rangefilter',
 ]
 
 MIDDLEWARE = [

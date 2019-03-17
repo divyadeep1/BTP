@@ -8,7 +8,18 @@
 #     https://doc.scrapy.org/en/latest/topics/settings.html
 #     https://doc.scrapy.org/en/latest/topics/downloader-middleware.html
 #     https://doc.scrapy.org/en/latest/topics/spider-middleware.html
+import os
+import sys
+DJANGO_PROJECT_PATH = r'C:\Users\hp\Desktop\project1\BTP\analyzer'
 
+DJANGO_SETTINGS_MODULE = 'analyzer.settings'
+
+sys.path.insert(0, DJANGO_PROJECT_PATH)
+os.environ['DJANGO_SETTINGS_MODULE'] = DJANGO_SETTINGS_MODULE
+
+
+import django
+django.setup()
 BOT_NAME = 'reviews'
 
 SPIDER_MODULES = ['reviews.spiders']
@@ -64,9 +75,9 @@ ROBOTSTXT_OBEY = True
 
 # Configure item pipelines
 # See https://doc.scrapy.org/en/latest/topics/item-pipeline.html
-#ITEM_PIPELINES = {
-#    'reviews.pipelines.ReviewsPipeline': 300,
-#}
+ITEM_PIPELINES = {
+    'reviews.pipelines.ReviewsPipeline': 1000,
+}
 
 # Enable and configure the AutoThrottle extension (disabled by default)
 # See https://doc.scrapy.org/en/latest/topics/autothrottle.html
